@@ -1,0 +1,11 @@
+C:\Users\Ralitsa\Desktop\ZombieDice\zombie_dice\target\debug\deps\getrandom-e57ccbc9f360d1e3.rmeta: C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\lib.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\util.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error_impls.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\windows.rs
+
+C:\Users\Ralitsa\Desktop\ZombieDice\zombie_dice\target\debug\deps\libgetrandom-e57ccbc9f360d1e3.rlib: C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\lib.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\util.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error_impls.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\windows.rs
+
+C:\Users\Ralitsa\Desktop\ZombieDice\zombie_dice\target\debug\deps\getrandom-e57ccbc9f360d1e3.d: C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\lib.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\util.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error_impls.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\windows.rs
+
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\lib.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\util.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\error_impls.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\getrandom-0.2.2\src\windows.rs:

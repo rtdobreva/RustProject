@@ -1,0 +1,12 @@
+C:\Users\Ralitsa\Desktop\ZombieDice\zombie_dice\target\debug\deps\rand_core-45508734dd81b128.rmeta: C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\lib.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\block.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\error.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\impls.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\le.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\os.rs
+
+C:\Users\Ralitsa\Desktop\ZombieDice\zombie_dice\target\debug\deps\librand_core-45508734dd81b128.rlib: C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\lib.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\block.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\error.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\impls.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\le.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\os.rs
+
+C:\Users\Ralitsa\Desktop\ZombieDice\zombie_dice\target\debug\deps\rand_core-45508734dd81b128.d: C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\lib.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\block.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\error.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\impls.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\le.rs C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\os.rs
+
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\lib.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\block.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\error.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\impls.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\le.rs:
+C:\Users\Ralitsa\.cargo\registry\src\github.com-1ecc6299db9ec823\rand_core-0.6.2\src\os.rs:
