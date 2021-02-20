@@ -16,9 +16,9 @@ pub enum Game_alert {
 
 pub fn print_game_alert(alert: Game_alert) -> String {
     match alert {
-       Game_alert::Loss => "Unfortunately, you lost all points accumulated during the last turn ☹️".to_string(),
-       Game_alert::WinMaybe => "Congratulations, you have 13 points!🥳".to_string(),
-       Game_alert::ContinueTheGame => "If you want, you can continue your turn! 🤔".to_string(),
+       Game_alert::Loss => "Unfortunately, you lost all points accumulated during the last turn ☹".to_string(),
+       Game_alert::WinMaybe => "Congratulations, you have 13 points!".to_string(),
+       Game_alert::ContinueTheGame => "If you want, you can continue your turn!".to_string(),
     }
 }
 
@@ -105,7 +105,7 @@ impl Game {
         let mut i = 0;
 
         while &self.players.len() > &i && &self.players[i].score == max {
-            println!("🎊 Congratulations, {}! You won the game! 🎊", self.players[i].name);
+            println!("++ Congratulations, {}! You won the game! ++", self.players[i].name);
             i += 1
         }
 
@@ -252,7 +252,7 @@ impl Game {
         }
 
         println!("{} \n","Total:".blue());
-        println!( "{} :🧠\n {} :💥\n", p.scores_of_current_move.to_string().blue(), p.current_lifes.to_string().blue());
+        println!( "{} : BRAIN \n{} : SHOTGUN\n", p.scores_of_current_move.to_string().blue(), p.current_lifes.to_string().blue());
     }
 
     fn print_result(&self, sides: &Vec<dice::Side>) {
@@ -274,11 +274,11 @@ impl Game {
         .filter(|side| *side == dice::Side::Footsteps)
         .collect();
         
-        println!("{}x🧠  {}x👣  {}x💥 \n", brains.len(), shotguns.len(), footsteps.len());
+        println!("{}x BRAIN  {}x FOOTSTEPS  {}x SHOTGUNS \n", brains.len(), shotguns.len(), footsteps.len());
     }
     
     fn print_separator_line() {
-        println!("{} \n", "❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒".red()); 
+        println!("{} \n", "++++++++++++++++++++++++++++++++++++++++".red()); 
     }
 
 }
