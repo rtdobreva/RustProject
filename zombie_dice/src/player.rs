@@ -1,12 +1,12 @@
 use crate::dice;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Player {
-    name: String,
-    score: u8,  /// the number of brains
-    scores_of_current_move: u8,
-    current_lifes: u8, /// the number of .guns at the current move
-    previous_throws: Vec<Vec<dice::Side>>,
+    pub name: String,
+    pub score: u8,  /// the number of brains
+    pub scores_of_current_move: u8,
+    pub current_lifes: u8, /// the number of .guns at the current move
+    pub previous_throws: Vec<Vec<dice::Side>>,
 }
 
 impl Player {

@@ -7,7 +7,7 @@ pub enum Color {
     Yellow,
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum Side {
     Brain,
     Footsteps,
@@ -18,7 +18,7 @@ pub enum Side {
 #[derive(Debug, Copy, Clone)]
 pub struct Dice {
      color: Color,
-     isThrown: bool, 
+     is_thrown: bool, 
 }
 
 impl Dice {
@@ -26,7 +26,7 @@ impl Dice {
     pub fn new(color: Color) -> Dice {
         Dice {
             color: color,
-            isThrown: false,
+            is_thrown: false,
         }
     }
 }
@@ -61,9 +61,15 @@ pub struct DiceManager {
 
 impl DiceManager {
 
+    pub fn new() -> DiceManager {
+        DiceManager {
+            dices: Vec::new(),
+        }
+    }
+
     pub fn available_dices(&self) -> Vec<Dice> {
         return self.dices.clone().into_iter()
-        .filter(|x| !x.isThrown)
+        .filter(|x| !x.is_thrown)
         .collect::<Vec<Dice>>();
     }
 
@@ -100,8 +106,8 @@ impl DiceManager {
        let side_index = rng.gen_range(0..sides.len());
 
        match sides[side_index] {
-        Side::Footsteps => self.dices[dice_index].isThrown = false,
-        _ => self.dices[dice_index].isThrown = true
+        Side::Footsteps => self.dices[dice_index].is_thrown = false,
+        _ => self.dices[dice_index].is_thrown = true
        }
 
        return  sides[side_index]
@@ -118,9 +124,9 @@ impl DiceManager {
         return result;
     }
 
-    pub fn returnAllDice(&mut self) {
+    pub fn return_all_dices(&mut self) {
         for i in 0..self.dices.len() {
-            self.dices[i].isThrown = false
+            self.dices[i].is_thrown = false
         }
     }
     

@@ -1,12 +1,14 @@
 mod dice;
 mod player;
+mod game;
 
 use std::env;
 use std::process;
+use colored::*;
 
 
 fn main() {
-
+/*
     //TODO:- Better validation
     let mut args: Vec<String> = env::args().collect();
     let args_count = args.len();
@@ -29,6 +31,9 @@ fn main() {
     //Create players 
     let p = player::Player::init_players(args);
     println!("{:?}",p);
+*/
 
+println!("{} \n", ")❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒".red());
+println!("{} \n", ")❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒");
 }
 
