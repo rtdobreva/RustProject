@@ -1,4 +1,5 @@
 mod dice;
+mod player;
 
 use std::env;
 use std::process;
@@ -7,7 +8,7 @@ use std::process;
 fn main() {
 
     //TODO:- Better validation
-    let args: Vec<String> = env::args().collect();
+    let mut args: Vec<String> = env::args().collect();
     let args_count = args.len();
 
     if args_count <= 2 {
@@ -21,10 +22,13 @@ fn main() {
         println!("Please, enter the number of players and their names!");
         process::exit(0);
     }
+    //Remove the program call and the number of players. We only need the players names
+    args.remove(0);
+    args.remove(0);
 
-    for i in 0..args.len(){
-       let name = &args[i];
-       println!("{} \n", name);
-    }
+    //Create players 
+    let p = player::Player::init_players(args);
+    println!("{:?}",p);
 
 }
+
