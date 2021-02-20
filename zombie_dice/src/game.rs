@@ -71,8 +71,8 @@ impl Game {
         }
     }
 
-    fn current_player(&self) -> player::Player {
-        return self.players[self.current_player_index as usize].clone();
+    fn current_player(&mut self) -> &mut player::Player {
+        return &mut self.players[self.current_player_index as usize];
     }
 }
 
@@ -208,7 +208,7 @@ impl Game {
             match s {
                 dice::Side::Brain => self.current_player().scores_of_current_move += 1,
                 dice::Side::Shotguns => self.current_player().current_lifes += 1,
-                _ => break,
+                _ => continue,
             }
         }
 
@@ -229,8 +229,8 @@ impl Game {
 impl Game {
 
     pub fn print_players(&self, did_end_game: bool) {
-        for player in self.players.clone() {
-            if !did_end_game && player == self.current_player() {
+        for player in self.players.iter() {
+            if !did_end_game && player == &self.players[self.current_player_index as usize] {
                 println!("{}:{}  <---- Current player", player.name.green(), (player.score + player.scores_of_current_move).to_string().green()); 
             } else {
                 println!("{}: {}", player.name, player.score);
@@ -239,13 +239,13 @@ impl Game {
     }
 
     fn print_total_score_of_this_move(& self) {
-        let p = self.current_player();
+        let p =  &self.players[self.current_player_index as usize];
         println!("{}  {} points\n", "In this turn you won:".magenta(), p.scores_of_current_move.to_string().magenta());
     }
 
     fn print_previous_throws(&self) {
         println!( "{} \n","All dice rolls for this turn:".blue());
-        let p = self.current_player();
+        let p =  &self.players[self.current_player_index as usize];
 
         for side in &p.previous_throws {
             self.print_result(side);
@@ -274,7 +274,7 @@ impl Game {
         .filter(|side| *side == dice::Side::Footsteps)
         .collect();
         
-        println!("{}x BRAIN  {}x FOOTSTEPS  {}x SHOTGUNS \n", brains.len(), shotguns.len(), footsteps.len());
+        println!("{}x BRAIN  {}x SHOTGUNS  {}x FOOTSTEPS \n", brains.len(), shotguns.len(), footsteps.len());
     }
     
     fn print_separator_line() {

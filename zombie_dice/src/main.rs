@@ -34,10 +34,6 @@ fn main() {
     args.remove(0);
     args.remove(0);
 
-    //Create players 
-    let p = player::Player::init_players(&args);
-    println!("{:?}",p);
-
     let mut game = game::Game::new();
     game.start(&args);
     println!("Welcome to all!");
