@@ -29,11 +29,11 @@ impl Player {
 }
 
 impl Player {
-    pub fn init_players(names: Vec<String>) -> Vec<Player> {
+    pub fn init_players(names: &Vec<String>) -> Vec<Player> {
         let mut res: Vec<Player> = Vec::new();
 
         for name in names {
-            res.push(Player::new(name));
+            res.push(Player::new(name.to_string()));
         }
 
         res

@@ -22,10 +22,11 @@ pub fn print_game_alert(alert: Game_alert) -> String {
     }
 }
 
-struct Game {
+#[derive(Debug, Clone)]
+pub struct Game {
 
-    did_end_game: bool,
-    want_to_continue: bool,
+    pub did_end_game: bool,
+    pub want_to_continue: bool,
 
     players: Vec<player::Player>,
     current_player_index: i8,
@@ -77,12 +78,12 @@ impl Game {
 
 impl Game {
 
-    pub fn start(&mut self, players_name: Vec<String>) {
+    pub fn start(&mut self, players_name: &Vec<String>) {
         self.dice_manager.setup_dices();
         self.players = player::Player::init_players(players_name);
     }
 
-    fn start_new_game(&mut self) {
+    pub fn start_new_game(&mut self) {
         let n = self.players.len();
 
         for i in 0..n {
@@ -122,7 +123,7 @@ impl Game {
         }
     }
 
-    fn prepare_for_next_step(&mut self, sides: Vec<dice::Side>) {
+    fn prepare_for_next_step(&mut self, sides: &Vec<dice::Side>) {
         if self.current_player().current_lifes >= NUMBER_OF_DICE_TO_ROLL {
             println!("{}",print_game_alert(Game_alert::Loss).red());
             self.current_player().scores_of_current_move = 0;
@@ -161,7 +162,7 @@ impl Game {
         println!("{}",print_game_alert(Game_alert::ContinueTheGame).red());
     }
 
-    fn end_tur(&mut self) {
+    pub fn end_turn(&mut self) {
         if !self.did_roll_dice {
             println!("Wrong command! You must roll the dice first!");
             return
@@ -196,7 +197,7 @@ impl Game {
        Game::print_separator_line();
     }
 
-    fn roll_dice(&mut self) {
+    pub fn roll_dice(&mut self) {
         self.did_roll_dice = true;
         let mut side: Vec<dice::Side> = Vec::new();
 
@@ -214,7 +215,7 @@ impl Game {
         Game::print_separator_line();
         self.print_result(&side);
         self.print_previous_throws();
-        self.prepare_for_next_step(side);
+        self.prepare_for_next_step(&side);
 
         if !self.did_end_game {
             self.print_players(false);
@@ -227,7 +228,7 @@ impl Game {
 //MARK:- Prints
 impl Game {
 
-    fn print_players(&self, did_end_game: bool) {
+    pub fn print_players(&self, did_end_game: bool) {
         for player in self.players.clone() {
             if !did_end_game && player == self.current_player() {
                 println!("{}:{}  <---- Current player", player.name.green(), (player.score + player.scores_of_current_move).to_string().green()); 
@@ -277,7 +278,7 @@ impl Game {
     }
     
     fn print_separator_line() {
-        println!("{} \n", ")❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒".red()); 
+        println!("{} \n", "❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒❒".red()); 
     }
 
 }
