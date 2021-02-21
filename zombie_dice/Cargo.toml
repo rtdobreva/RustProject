@@ -9,4 +9,3 @@ edition = "2018"
 [dependencies]
 rand = "0.8.0"
 colored = "2"
-console = "0.14.0"

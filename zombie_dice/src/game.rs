@@ -1,11 +1,11 @@
 use crate::dice;
 use crate::player;
 use colored::*;
-
 use std::convert::TryInto;
 
 const NUMBER_OF_DICE_TO_ROLL:u8 = 3;
 const SCORES_TO_WIN:u8 = 13;
+pub const MAX_NUMBER_OF_PLAYERS:usize = 8;
 
 #[derive(Debug, Copy, Clone)]
 pub enum Game_alert {
@@ -16,7 +16,7 @@ pub enum Game_alert {
 
 pub fn print_game_alert(alert: Game_alert) -> String {
     match alert {
-       Game_alert::Loss => "Unfortunately, you lost all points accumulated during the last turn ☹".to_string(),
+       Game_alert::Loss => "Unfortunately, you lost all points accumulated during the last turn!".to_string(),
        Game_alert::WinMaybe => "Congratulations, you have 13 points!".to_string(),
        Game_alert::ContinueTheGame => "If you want, you can continue your turn!".to_string(),
     }
@@ -32,7 +32,6 @@ pub struct Game {
     current_player_index: i8,
     winner_index: Option<i8>,
     potential_winners: Vec<i8>,
-    did_enter_wrong_command: bool,
     did_roll_dice: bool,
 
     dice_manager: dice::DiceManager,
@@ -48,7 +47,6 @@ impl Game {
            current_player_index: 0,
            winner_index: None,
            potential_winners: Vec::new(),
-           did_enter_wrong_command: true,
            did_roll_dice: false,
            dice_manager: dice::DiceManager::new(),
         }
@@ -62,7 +60,7 @@ impl Game {
         match self.winner_index {
             Some(x) => {
                 if (x - 1) < 0 { 
-                   return Some((self.players.len() - 1).try_into().unwrap()) //TODO:- 
+                   return Some((self.players.len() - 1).try_into().unwrap_or(0))
                  } else {
                      return Some(x - 1)
                  }
@@ -101,11 +99,11 @@ impl Game {
 
     fn end_game(&mut self) {
         self.players.sort_by(|a, b| b.score.cmp(&a.score));
-        let max = &self.players[0].score;
+        let max = self.players[0].score;
         let mut i = 0;
 
-        while &self.players.len() > &i && &self.players[i].score == max {
-            println!("++ Congratulations, {}! You won the game! ++", self.players[i].name);
+        while self.players.len() > i && self.players[i].score == max {
+            println!("++ Congratulations, {}! You won the game! ++", self.players[i].name.green());
             i += 1
         }
 
@@ -116,7 +114,7 @@ impl Game {
     }
     
     fn increase_index(&mut self) {
-        if self.current_player_index == (&self.players.len() - 1).try_into().unwrap() { //TODO:-
+        if self.current_player_index == (self.players.len() - 1).try_into().unwrap_or(0) { 
             self.current_player_index = 0;
         } else {
             self.current_player_index += 1;
@@ -124,12 +122,15 @@ impl Game {
     }
 
     fn prepare_for_next_step(&mut self, sides: &Vec<dice::Side>) {
+
         if self.current_player().current_lifes >= NUMBER_OF_DICE_TO_ROLL {
             println!("{}",print_game_alert(Game_alert::Loss).red());
+
             self.current_player().scores_of_current_move = 0;
             self.current_player().end_my_turn();
             self.dice_manager.return_all_dices();
 
+            //Check if this player is the last for this game
             if self.end_game_index() != None && self.winner_index != None  {
                 if self.current_player_index == self.end_game_index().unwrap(){
                     self.end_game();
@@ -137,6 +138,7 @@ impl Game {
             } 
             self.increase_index();
             return 
+
         } else if self.current_player().score + self.current_player().scores_of_current_move >= SCORES_TO_WIN {
             println!("{}",print_game_alert(Game_alert::WinMaybe));
 
@@ -144,11 +146,8 @@ impl Game {
                 if self.current_player_index == self.end_game_index().unwrap() {
                     let mut max = self.players.clone().into_iter()
                     .map(|p| { p.score}).max();
-                    if max == None {
-                        max = Some(0);
-                    }
 
-                    if self.current_player().score + self.current_player().scores_of_current_move > max.unwrap() {
+                    if self.current_player().score + self.current_player().scores_of_current_move > max.unwrap_or(0) {
                         self.current_player().score += self.current_player().scores_of_current_move;
                         self.potential_winners.push(self.current_player_index);
                         self.end_game();
@@ -159,7 +158,7 @@ impl Game {
             }
         }
 
-        println!("{}",print_game_alert(Game_alert::ContinueTheGame).red());
+        println!("{}\n",print_game_alert(Game_alert::ContinueTheGame).bold());
     }
 
     pub fn end_turn(&mut self) {
@@ -175,7 +174,7 @@ impl Game {
         self.current_player().end_my_turn();
 
         if self.winner_index == None && self.current_player().score >= SCORES_TO_WIN {
-            if self.current_player_index != (&self.players.len() - 1).try_into().unwrap() { //TODO:
+            if self.current_player_index != (self.players.len() - 1).try_into().unwrap_or(0) {
                 self.winner_index = Some(self.current_player_index);
             } else {
                 self.end_game();
@@ -231,27 +230,34 @@ impl Game {
     pub fn print_players(&self, did_end_game: bool) {
         for player in self.players.iter() {
             if !did_end_game && player == &self.players[self.current_player_index as usize] {
-                println!("{}:{}  <---- Current player", player.name.green(), (player.score + player.scores_of_current_move).to_string().green()); 
+                println!("{}: {}  <---- Current player", player.name.green(), (player.score + player.scores_of_current_move).to_string().green()); 
             } else {
                 println!("{}: {}", player.name, player.score);
             }
         }
     }
 
+    pub fn print_commands(&self) {
+    
+        println!("\n{}","Commands available:".green().bold());
+        println!("{}","roll_dice/r: use this command to draw and roll the dice".green());
+        println!("{}","end_turn/e: use this command to end your turn and get the points you've accumulated so far".green());
+    }
+
     fn print_total_score_of_this_move(& self) {
         let p =  &self.players[self.current_player_index as usize];
-        println!("{}  {} points\n", "In this turn you won:".magenta(), p.scores_of_current_move.to_string().magenta());
+        println!("{}  {} {}\n", "In this turn you won:".magenta(), p.scores_of_current_move.to_string().magenta(),"points".magenta());
     }
 
     fn print_previous_throws(&self) {
-        println!( "{} \n","All dice rolls for this turn:".blue());
+        println!( "{} \n","All dice rolls for this turn:".blue().bold());
         let p =  &self.players[self.current_player_index as usize];
 
         for side in &p.previous_throws {
             self.print_result(side);
         }
 
-        println!("{} \n","Total:".blue());
+        println!("{} \n","Total:".blue().bold());
         println!( "{} : BRAIN \n{} : SHOTGUN\n", p.scores_of_current_move.to_string().blue(), p.current_lifes.to_string().blue());
     }
 

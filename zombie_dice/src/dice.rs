@@ -22,8 +22,8 @@ pub struct Dice {
 }
 
 impl Dice {
-    // A public constructor method
-    pub fn new(color: Color) -> Dice {
+    
+    fn new(color: Color) -> Dice {
         Dice {
             color: color,
             is_thrown: false,
@@ -33,7 +33,7 @@ impl Dice {
 
 impl Dice {
 
-    pub fn get_sides(&self) -> Vec<Side>  {
+    fn get_sides(&self) -> Vec<Side>  {
         let mut args: Vec<Side> = vec![Side::Brain, Side::Brain, Side::Footsteps, Side::Footsteps, Side::Shotguns, Side::Shotguns];
 
         match self.color {
@@ -67,7 +67,7 @@ impl DiceManager {
         }
     }
 
-    pub fn available_dices(&self) -> Vec<Dice> {
+    fn available_dices(&self) -> Vec<Dice> {
         return self.dices.clone().into_iter()
         .filter(|x| !x.is_thrown)
         .collect::<Vec<Dice>>();
@@ -94,7 +94,7 @@ impl DiceManager {
         }
     }
 
-    pub fn roll(&mut self) -> Side {
+    fn roll(&mut self) -> Side {
         if self.available_dices().len() == 0 {
             return Side::Unknown;
         }
